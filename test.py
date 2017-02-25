@@ -14,9 +14,6 @@ from src import led_tester
 
 
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
-
-def test_calculate():
-    eq_(len(read_uri(uri)), 9506, "buffer length does not match" )
             
 def test_inputline():
     line = "turn on 0,0 through 11,11"
@@ -36,6 +33,7 @@ def test_inputline3():
     result = extract(line)
     eq_(result, expected, "The function should have returned none")
 
-
-
-
+def test_count():
+    count = turn_switch(uri)
+    expected = 400410
+    eq_(count, expected, "The count should be 400410")
