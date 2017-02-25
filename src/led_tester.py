@@ -37,10 +37,8 @@ def extract(line):
                 
                 
                 
-line = "turn on 0,0 through 11,11"
-
-extract(line)           
-            
+def LED_TESTER(value):
+    return None          
 
     
     

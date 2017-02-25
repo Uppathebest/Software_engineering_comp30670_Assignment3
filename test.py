@@ -8,8 +8,8 @@ Created on 20 Feb 2017
 import sys
 
 from nose.tools import *
+
 from src.led_tester import *
-from _overlapped import NULL
 
 
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
@@ -35,7 +35,16 @@ def test_inputline3():
     result = extract(line)
     eq_(result, expected, "The function should have returned none")
 
-
+def size_of_square():
+    square = LED_TESTER(10)
+    count = 0
+    for x in square:
+        for j in x:
+            if j == False:
+                count += 1
+    expected = 100
+    eq_(count, expected, "the number of False should be 100")  
+    
 
 
 
