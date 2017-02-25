@@ -12,8 +12,11 @@ setup(name="systeminfo",
       author="Daniele Strafile",
       author_email="daniele.strafile@ucdconnect.ie",
       license="GPL3",
-      packages=['systeminfo'],
+      packages=['src'],
       entry_points={
-          'console_scripts':['comp30670_systeminfo=systeminfo.main:main']
-          }
+          'console_scripts':['led_tester=src.main:main']
+          },
+      install_requires=[
+          'numpy',
+          ],
       )
