@@ -16,13 +16,11 @@ uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 def test_calculate():
     eq_(len(read_uri(uri)), 9506, "buffer length does not match" )
             
-def test_inputline():
+def test_inputline(line, expected):
     line = "turn on 0,0 through 11,11"
-    expected = ("turn on",0,0,11,11)
+    expected = ["turn on",0,0,11,11]
     result = extract(line)
     eq_(result, expected, "[]".format(result))
-
-
 
 
 
