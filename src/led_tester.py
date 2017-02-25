@@ -36,12 +36,22 @@ def extract(line):
                 return values_int
                 
                 
-                
+# create square             
 def LED_TESTER(value):
-    return None          
+    list_false = [ [False]*value for _ in range(value) ]    
+    return list_false
+
+# count number of values in square
+def size_tester(square):
+    count = 0
+    for x in square:
+        for j in x:
+            if j == False:
+                count += 1
+    return count
 
     
-    
+
     
     
     
