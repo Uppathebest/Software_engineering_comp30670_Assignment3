@@ -7,11 +7,6 @@ import re
 import urllib.request
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--input', help='input help')
-args = parser.parse_args()
-
-uri = args.input
 
 
 def read_uri(fname):
@@ -74,8 +69,12 @@ def lights_number(square):
     
 
 # this is the function to turn off/on/ switch lights
-def turn_switch(file):
-    read_file = read_uri(file)
+def turn_switch():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', help='input help')
+    args = parser.parse_args()
+    uri = args.input
+    read_file = read_uri(uri)
     for i, line in enumerate(read_file):
         if i == 0:
             n = int(line)
@@ -111,7 +110,7 @@ def turn_switch(file):
                                     square[i][j] = False
                                 else:
                                     square[i][j] = True                                 
-    output = [file, lights_number(square)]
+    output = [uri, lights_number(square)]
     print(output)
     return output
 '''
@@ -123,7 +122,6 @@ uri5 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt"
  
 '''
 
-turn_switch(uri)
 
 
 
