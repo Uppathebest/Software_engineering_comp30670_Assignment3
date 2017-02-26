@@ -5,7 +5,7 @@ Created on 20 Feb 2017
 '''
 from setuptools import setup
 
-setup(name="systeminfo",
+setup(name="led_tester",
       version="0.1",
       description="Basic system information for COMP30670",
       url="",
