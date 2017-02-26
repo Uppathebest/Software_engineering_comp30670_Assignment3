@@ -7,7 +7,7 @@ from setuptools import setup
 
 setup(name="led_tester",
       version="0.1",
-      description="Basic system information for COMP30670",
+      description="Assignment 3 Software Engineering",
       url="",
       author="Daniele Strafile",
       author_email="daniele.strafile@ucdconnect.ie",
