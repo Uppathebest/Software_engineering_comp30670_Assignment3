@@ -98,8 +98,7 @@ def turn_switch():
                                 square[i][j] = False
                             else:
                                 square[i][j] = True                              
-    output = [uri, lights_number(square)]
-    print(output)   
+    output = [uri, lights_number(square)]  
     return output
 
 if __name__ == '__main__':
