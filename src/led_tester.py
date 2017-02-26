@@ -111,7 +111,6 @@ def turn_switch():
                                 else:
                                     square[i][j] = True                                 
     output = [uri, lights_number(square)]
-    print(output)
     return output
 '''
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
