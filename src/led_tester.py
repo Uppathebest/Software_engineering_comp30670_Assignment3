@@ -122,8 +122,8 @@ uri4 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt"
 uri5 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt"
  
 '''
-if __name__ == '__main__':
-    turn_switch(uri)
+
+turn_switch(uri)
 
 
 
