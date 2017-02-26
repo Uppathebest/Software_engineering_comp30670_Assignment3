@@ -5,6 +5,13 @@ Created on 24 Feb 2017
 '''
 import re
 import urllib.request
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--input', help='input help')
+args = parser.parse_args()
+
+uri = args.input
 
 
 def read_uri(fname):
@@ -90,46 +97,39 @@ def turn_switch(file):
                     x1 = n-1
                 if y1 >= n:
                     y1 = n-1
-                #handle exception of coordinates
-                if square != 0 and y0 < y1 and x0 < x1:
-                    if instructions[0] == "turn on":
-                        for i in range(y0, y1 + 1):
-                            for j in range(x0, x1 + 1):
+                #handle exception of coordinates, exception of area of square and exception in the instructions
+                if square != 0 and y0 < y1 and x0 < x1 and instructions[0] != 0:
+                    for i in range(y0, y1 + 1):
+                        for j in range(x0, x1 + 1):
+                            if instructions[0] == "turn on":
                                 square[i][j] = True
-
-                    elif instructions[0] == "turn off":
-                        for i in range(y0, y1 + 1):
-                            for j in range(x0, x1 + 1):
+                            elif instructions[0] == "turn off":
                                 square[i][j] = False
-                                
-                    elif instructions[0] == "switch":
-                        for i in range(y0, y1 + 1):
-                            for j in range(x0, x1 + 1):
+                            else:
+                                # switch : if its on, turn off. if its off, turn on
                                 if square[i][j] == True:
                                     square[i][j] = False
                                 else:
-                                    square[i][j] = True                                  
+                                    square[i][j] = True                                 
     output = [file, lights_number(square)]
     print(output)
     return output
-
+'''
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 uri2 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_a.txt"
 uri3 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt"
 uri4 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt"
 uri5 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt"
  
+'''
 
 
 turn_switch(uri)
-            
-"""
-turn_switch(uri)
-turn_switch(uri2)
-turn_switch(uri3)
-turn_switch(uri4)
-turn_switch(uri5)
-"""
+
+
+
+         
+
     
     
 

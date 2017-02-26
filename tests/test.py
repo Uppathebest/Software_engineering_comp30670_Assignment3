@@ -1,16 +1,13 @@
-"""
-Created on 20 Feb 2017
+'''
+Created on 26 Feb 2017
 
 @author: Daniele
+'''
 
-"""
 
-import sys
-
-from nose.tools import *
+from nose.tools import eq_
 
 from src.led_tester import *
-from src import led_tester
 
 
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"

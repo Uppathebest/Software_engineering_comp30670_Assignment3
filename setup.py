@@ -17,6 +17,8 @@ setup(name="systeminfo",
           'console_scripts':['led_tester=src.main:main']
           },
       install_requires=[
-          'numpy',
+          're',
+          'urllib.request'
+          'argparse'
           ],
       )
