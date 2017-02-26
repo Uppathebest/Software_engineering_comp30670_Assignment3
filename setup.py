@@ -15,10 +15,5 @@ setup(name="systeminfo",
       packages=['src'],
       entry_points={
           'console_scripts':['led_tester=src.main:main']
-          },
-      install_requires=[
-          're',
-          'urllib.request'
-          'argparse'
-          ],
+          }
       )
