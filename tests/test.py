@@ -30,7 +30,9 @@ def test_inputline3():
     result = extract(line)
     eq_(result, expected, "The function should have returned none")
 
+
+# this test wont work anymore because of the argument parsing of tunr_switch (implemented to run on EC2 instance via command line)
 def test_count():
-    count = turn_switch(uri)
+    count = turn_switch()
     expected = [uri,400410]
     eq_(count, expected, "The count should be 400410")
