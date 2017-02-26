@@ -42,8 +42,8 @@ def extract(line):
                     return 0
             else:
                 return 0
-        else:
-            return 0
+    else:
+        return 0
                 
                 
 # create square             
@@ -96,17 +96,19 @@ def turn_switch(file):
                         for i in range(y0, y1 + 1):
                             for j in range(x0, x1 + 1):
                                 square[i][j] = True
+
                     elif instructions[0] == "turn off":
                         for i in range(y0, y1 + 1):
                             for j in range(x0, x1 + 1):
                                 square[i][j] = False
+                                
                     elif instructions[0] == "switch":
                         for i in range(y0, y1 + 1):
                             for j in range(x0, x1 + 1):
                                 if square[i][j] == True:
                                     square[i][j] = False
                                 else:
-                                    square[i][j] = True
+                                    square[i][j] = True                                  
     output = [file, lights_number(square)]
     print(output)
     return output
@@ -119,7 +121,7 @@ uri5 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt"
  
 
 
-turn_switch(uri2)
+turn_switch(uri)
             
 """
 turn_switch(uri)
