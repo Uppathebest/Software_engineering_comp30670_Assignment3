@@ -8,15 +8,20 @@ import urllib.request
 import argparse
 
 
-
-def read_uri(fname):
-    if fname.startswith('http'):
-        req = urllib.request.urlopen(fname)
+def read_uri():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', help='input help')
+    args = parser.parse_args()
+    # initialise uri as global variable because i need it in the output of the turn_switch function
+    global uri
+    uri = args.input
+    if uri.startswith('http'):
+        req = urllib.request.urlopen(uri)
         buffer = req.read().decode('utf-8')
         lines = buffer.splitlines()
         return lines
     else:
-        buffer = open(fname).read()
+        buffer = open(uri).read()
         return buffer
             # process line
             
@@ -24,24 +29,18 @@ def read_uri(fname):
 
 
 def extract(line):
-    # trim whitespaces from line on both sides
-    line = line.strip()
     # check that line contains one of the three possible commands at the beginning
     for string in ["turn on", "turn off", "switch"]:
-        if line.startswith(string):
-            # now take from the string the 4 values we need
+        if line.strip().startswith(string):
+            # now take from the string the 4 integer values we need
             values = re.findall('\d+', line)
             # check that we have found 4 values
             if len(values) == 4:
                 # convert values to integer
                 values_int = [int(x) for x in values]
-                # sanity check: did we find 4 integers?
-                if all(isinstance(num, int) for num in values_int) == True:
-                    # insert one of the 3 possible commands into the string
-                    values_int.insert(0, string)
-                    return values_int
-                else:
-                    return 0
+                # insert one of the 3 possible commands into the string
+                values_int.insert(0, string)
+                return values_int
             else:
                 return 0
     else:
@@ -50,9 +49,8 @@ def extract(line):
                 
 # create square             
 def LED_TESTER(value):
-    if value > 0 and value < 10**9:
-        list_false = [ [False]*value for _ in range(value) ]    
-        return list_false
+    if value > 0 and value < 10**9:  
+        return [ [False]*value for _ in range(value) ]  
     else:
         # handle exception
         return 0
@@ -70,54 +68,61 @@ def lights_number(square):
 
 # this is the function to turn off/on/ switch lights
 def turn_switch():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input', help='input help')
-    args = parser.parse_args()
-    uri = args.input
-    read_file = read_uri(uri)
+    read_file = read_uri()
     for i, line in enumerate(read_file):
         if i == 0:
             n = int(line)
             square = LED_TESTER(n)
         else:
             instructions = extract(line)
-            # sanity check of instructions
-            if instructions != 0:
-                y0 = instructions[1]
-                x0 = instructions[2]
-                y1 = instructions[3]
-                x1 = instructions[4]
+            #handle exception of coordinates, instructions, exception of area of square and exception in the instructions
+            if instructions != 0 and square != 0 and instructions[1] < instructions[3] and instructions[2] < instructions[4] and instructions[0] != 0:
                 # sanity checks to ensure the coordinate are within the boundaries
-                if y0 < 0:
-                    y0 = 0
-                if x0 < 0:
-                    x0 = 0
-                if x1 >= n:
-                    x1 = n-1
-                if y1 >= n:
-                    y1 = n-1
-                #handle exception of coordinates, exception of area of square and exception in the instructions
-                if square != 0 and y0 < y1 and x0 < x1 and instructions[0] != 0:
-                    for i in range(y0, y1 + 1):
-                        for j in range(x0, x1 + 1):
-                            if instructions[0] == "turn on":
-                                square[i][j] = True
-                            elif instructions[0] == "turn off":
+                if instructions[1] < 0:
+                    instructions[1] = 0
+                if instructions[2] < 0:
+                    instructions[2] = 0
+                if instructions[3] >= n:
+                    instructions[3] = n-1
+                if instructions[4] >= n:
+                    instructions[4] = n-1
+                for i in range(instructions[1], instructions[3] + 1):
+                    for j in range(instructions[2], instructions[4] + 1):
+                        if instructions[0] == "turn on":
+                            square[i][j] = True
+                        elif instructions[0] == "turn off":
+                            square[i][j] = False
+                        else:
+                            # switch : if its on, turn off. if its off, turn on
+                            if square[i][j] == True:
                                 square[i][j] = False
                             else:
-                                # switch : if its on, turn off. if its off, turn on
-                                if square[i][j] == True:
-                                    square[i][j] = False
-                                else:
-                                    square[i][j] = True                                 
+                                square[i][j] = True                              
     output = [uri, lights_number(square)]
+    print(output)   
     return output
+
+if __name__ == '__main__':
+    turn_switch()
 '''
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt', 400410]
+
+
 uri2 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_a.txt"
 uri3 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt"
+
+
+
 uri4 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt"
+['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt', 389206]
+
+
+
 uri5 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt"
+['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt', 349037]
+
+
  
 '''
 
