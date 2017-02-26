@@ -23,17 +23,17 @@ def test_inputline():
     
 def test_inputline2():
     line = "turn on 0, through 11,11"
-    expected = None
+    expected = 0
     result = extract(line)
     eq_(result, expected, "The function should have returned none")
 
 def test_inputline3():
     line = "churn on 0,0 through 11,11"
-    expected = None
+    expected = 0
     result = extract(line)
     eq_(result, expected, "The function should have returned none")
 
 def test_count():
     count = turn_switch(uri)
-    expected = 400410
+    expected = [uri,400410]
     eq_(count, expected, "The count should be 400410")
