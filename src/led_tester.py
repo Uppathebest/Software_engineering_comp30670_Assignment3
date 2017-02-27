@@ -35,7 +35,7 @@ def extract(line):
     for string in ["turn on", "turn off", "switch"]:
         if line.strip().startswith(string):
             # now take from the string the 4 integer values we need
-            values = re.findall('\d+', line)
+            values = re.findall('-?\d+', line)
             # check that we have found 4 values
             if len(values) == 4:
                 # convert values to integer
@@ -99,7 +99,7 @@ def turn_switch():
                             if square[i][j] == True:
                                 square[i][j] = False
                             else:
-                                square[i][j] = True                    
+                                square[i][j] = True           
     output = [uri, lights_number(square)]  
     print(output)
     return output
@@ -125,7 +125,7 @@ uri3 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt"
 
 
 uri4 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt"
-['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt', 389206]
+['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt', 477452]
 
 
 
