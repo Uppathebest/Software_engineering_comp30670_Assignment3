@@ -31,6 +31,13 @@ def test_inputline3():
     eq_(result, expected, "The function should have returned none")
 
 
+def test_lights_number():
+    square = [[True]*10 for _ in range(10)]
+    expected = 100
+    result = lights_number(square)
+    eq_(result, expected, "The number of lights turned on (count of True values should be 100 ") 
+
+
 # this test wont work anymore because of the argument parsing of tunr_switch (implemented to run on EC2 instance via command line)
 def test_count():
     count = turn_switch()
