@@ -3,9 +3,9 @@ Created on 24 Feb 2017
 
 @author: Daniele
 '''
+import argparse
 import re
 import urllib.request
-import argparse
 
 
 def read_uri():
@@ -97,20 +97,29 @@ def turn_switch():
                             if square[i][j] == True:
                                 square[i][j] = False
                             else:
-                                square[i][j] = True                              
+                                square[i][j] = True                    
     output = [uri, lights_number(square)]  
+    print(output)
     return output
 
 if __name__ == '__main__':
     turn_switch()
+    
+    
+    
 '''
+RESULTS
+
 uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 ['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt', 400410]
 
 
 uri2 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_a.txt"
-uri3 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt"
+['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_a.txt', 6]
 
+
+uri3 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt"
+['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b.txt', 29942250]
 
 
 uri4 = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt"
