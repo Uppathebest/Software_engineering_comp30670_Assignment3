@@ -16,12 +16,14 @@ def read_uri():
     global uri
     uri = args.input
     if uri.startswith('http'):
+        # case where file is on the net
         req = urllib.request.urlopen(uri)
         buffer = req.read().decode('utf-8')
         lines = buffer.splitlines()
         return lines
     else:
-        buffer = open(uri).read()
+        ## case where file is local file
+        buffer = open(uri).readlines()
         return buffer
             # process line
             
